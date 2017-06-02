@@ -1,0 +1,20 @@
+
+
+- name: create dirs to Dockerfile - images to build
+  file:
+     path:   "{{ docker.build.build_path }}/{{ item.value.name }}"
+     state: directory
+  with_dict:  "{{ docker.build.images_to_build }}"
+
+- name: Template Dockerfile for images to build
+  template:
+     src:  Dockerfile.j2
+     dest: "{{ docker.build.build_path }}/{{ item.value.name }}/Dockerfile"
+  with_dict:  "{{ docker.build.images_to_build }}"
+
+- name: Build image and with buildargs
+  docker_image:
+     path:  "{{ docker.build.build_path }}/{{ item.value.name }}"
+     name: "{{ item.value.repo }}/{{ item.value.name }}"
+     tag:  "{{ item.value.tag }}"
+  with_dict:  "{{ docker.build.images_to_build }}"

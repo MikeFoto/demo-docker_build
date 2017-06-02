@@ -1,0 +1,5 @@
+- include: "pull.yml"
+
+- include: "build.yml"
+
+- include: "run.yml"

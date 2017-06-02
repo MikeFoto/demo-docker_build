@@ -1,0 +1,4 @@
+FROM {{ item.value.base_image.name }}:{{ item.value.base_image.version }}
+###########################################
+{{ item.value.script }}
+###########################################
