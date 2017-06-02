@@ -1,3 +1,9 @@
+docker_aux:
+  repo:      "ansible_my_repo"
+  img_names:
+    webserver: "webserver_img"
+    loadb:     "loadbalan_img"
+
 docker:
   pull:
     base_images:
@@ -17,27 +23,53 @@ docker:
     build_path:   "../tmp"
     images_to_build:
       webserver:
+        build:     True
         base_image:
           name:    centos
           version: "6.9"
-        name:      "webserver_img"
-        repo:      "ansible_my_repo"
-        tag:       "v0.02"
+        name:      "{{ docker_aux.img_names.webserver }}"
+        repo:      "{{ docker_aux.repo }}"
+        tag:       "v0.08"
+        files:
+          - name: index1.html
+            dst:       /var/www/html/index1.html
+            cnt: |
+              <h1>
+                default index page from ansible
+              </h1>
+          - name: index.html
+            dst:       /var/www/html/index.html
+            cnt: |
+              <h1>
+                default index page from ansible
+              </h1>
         script: |
           # httpd
           RUN yum -y  install httpd
           #
           # PHP
           RUN yum -y  install php
+          ADD index.html /var/www/html/index.html
           CMD ["/usr/sbin/apachectl", "-DFOREGROUND"]
       loadb:
+        build:     False
         base_image:
           name:    centos
           version: "latest"
-        name:      "loadbalan_img"
-        repo:      "ansible_my_repo"
+        name:      "{{ docker_aux.img_names.loadb}}"
+        repo:      "{{ docker_aux.repo }}"
         tag:       "v0.02"
         script: |
           # line 1 of script ( latest )
           # ....
           # last line of script
+  environments:
+    env1:
+      status:  enable
+      containers:
+        - {
+          name:  "container-env-1-",
+          img: "{{ docker_aux.repo }}/{{ docker_aux.img_names.webserver }}:v0.02",
+          count: 1,
+          ports: "8080:80"     # local:remote
+        }

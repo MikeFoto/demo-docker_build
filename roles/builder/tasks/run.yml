@@ -1,3 +1,26 @@
-- name: debug
-  debug:
-    msg: " spin containners "
+# - name: build sequence
+#   debug:
+#     msg:   "do nothing "
+#   with_sequence: start=1 end=5
+#   register: my_sequence
+#
+# - name: debug1
+#   debug:
+#     msg: "value is {{ item.item }}"
+#   with_items: "{{ my_sequence.results }}"
+
+# - name: Spin containers
+#   debug:
+#     msg: "msg ... {{ item }}"
+#   with_nested:
+#     - [ "a",  "b" ]
+#     - [ "c",  "d" ]
+# - name: Spin containers
+#   docker_container:
+#     name:     "{{ item.name }}"
+#     recreate: yes
+#     image:    "{{ item.img }}"
+    # ports:    "{{ item.ports }}"
+#   with_sequence: count=4
+#   with_items:
+#     - "{{ docker.environments.env1.containers }}"
