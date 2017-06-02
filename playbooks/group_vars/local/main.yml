@@ -1,0 +1,15 @@
+docker:
+  pull:
+    base_images:
+      centos68:
+        name:    centos
+        version: "6.8"
+      centos69:
+        name:    centos
+        version: "6.9"
+      centoslatest:
+        name:    centos
+        version: "latest"
+      ubuntults:
+        name:    ubuntu
+        version: "14.04"
