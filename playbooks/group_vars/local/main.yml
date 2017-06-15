@@ -63,6 +63,7 @@ docker:
           # line 1 of script ( latest )
           # ....
           # last line of script
+
   environments:
     env1:
       status:  enable
