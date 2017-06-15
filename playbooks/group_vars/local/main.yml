@@ -22,26 +22,26 @@ docker:
   build:
     build_path:   "../tmp"
     images_to_build:
-      webserver:
-        build:     True
+      - image_name: webserver
+        build:      True
         base_image:
-          name:    centos
-          version: "6.9"
-        name:      "{{ docker_aux.img_names.webserver }}"
-        repo:      "{{ docker_aux.repo }}"
-        tag:       "v0.08"
+          name:     centos
+          version:  "6.9"
+        name:       "{{ docker_aux.img_names.webserver }}"
+        repo:       "{{ docker_aux.repo }}"
+        tag:        "v0.08"
         files:
           - name: index1.html
             dst:       /var/www/html/index1.html
             cnt: |
               <h1>
-                default index page from ansible
+                default index page from ansible (2)
               </h1>
           - name: index.html
             dst:       /var/www/html/index.html
             cnt: |
               <h1>
-                default index page from ansible
+                default index page from ansible (1)
               </h1>
         script: |
           # httpd
@@ -51,14 +51,14 @@ docker:
           RUN yum -y  install php
           ADD index.html /var/www/html/index.html
           CMD ["/usr/sbin/apachectl", "-DFOREGROUND"]
-      loadb:
-        build:     False
+      - image_name: loadb
+        build:      True
         base_image:
-          name:    centos
-          version: "latest"
-        name:      "{{ docker_aux.img_names.loadb}}"
-        repo:      "{{ docker_aux.repo }}"
-        tag:       "v0.02"
+          name:     centos
+          version:  "latest"
+        name:       "{{ docker_aux.img_names.loadb}}"
+        repo:       "{{ docker_aux.repo }}"
+        tag:        "v0.02"
         script: |
           # line 1 of script ( latest )
           # ....
