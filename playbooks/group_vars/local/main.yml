@@ -73,17 +73,3 @@ docker_builder:
           # line 1 of script ( latest )
           # ....
           # last line of script
-
-
-
-##########################################################
-  environments:
-    env1:
-      status:  enable
-      containers:
-        - {
-          name:  "container-env-1-",
-          img: "{{ docker_builder_aux.repo }}/{{ docker_builder_aux.img_names.webserver }}:v0.02",
-          count: 1,
-          ports: "8080:80"     # local:remote
-        }
