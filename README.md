@@ -16,3 +16,12 @@ localhost
 ```bash
 ansible-playbook  -i inventory/myinventory  playbooks/build.yml
 ```bash
+
+# License
+
+MIT
+
+# Author Information
+
+Created by Miguel Rodrigues.
+
