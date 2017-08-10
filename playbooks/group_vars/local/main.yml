@@ -7,9 +7,9 @@ docker_builder_aux:
 docker_builder:
   pull:
     base_images:
-      centos68:
+      centos66:
         name:    centos
-        version: "6.8"
+        version: "6.6"
       centos69:
         name:    centos
         version: "6.9"
@@ -54,13 +54,13 @@ docker_builder:
           ADD index1.html /var/www/html/index.html
           CMD ["/usr/sbin/apachectl", "-DFOREGROUND"]
       - image_name: loadb
-        build:      False
+        build:      True
         base_image:
           name:     centos
           version:  "latest"
         name:       "{{ docker_builder_aux.img_names.loadb}}"
         repo:       "{{ docker_builder_aux.repo }}"
-        tag:        "v0.04"
+        tag:        "v0.05"
         files:
           - name:     index3.html
             location: "loadb"
