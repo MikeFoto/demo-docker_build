@@ -1,4 +1,4 @@
-# Demo for a docker build host
+# Demo for a docker Images build host
 
 # Setup
 
