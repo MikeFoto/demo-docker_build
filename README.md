@@ -19,7 +19,7 @@ ansible-playbook  -i inventory/myinventory  playbooks/build.yml
 
 # License
 
-MIT
+GPL 3.0
 
 # Author Information
 
